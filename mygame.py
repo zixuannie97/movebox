@@ -3,6 +3,40 @@ import os
 
 pygame.init()
 
+class Sokoban:
+
+    def __init__(self):
+        self.level = list(
+            "----#####----------"
+            "----#---#----------"
+            "----#$--#----------"
+            "--###--$##---------"
+            "--#--$-$-#---------"
+            "###-#-##-#---######"
+            "#---#-##-#####--..#"
+            "#-$--$----------..#"
+            "#####-###-#@##--..#"
+            "----#-----#########"
+            "----#######--------")
+
+        # 19coloum
+        self.w = 19
+
+        # 11raw
+        self.h = 11
+
+        # man first locate self.level[163]
+        self.man = 163
+
+    def draw(self, screen, skin):
+        w = skin.get_width() / 4
+        for i in range(0, self.w):
+            for j in range(0, self.h):
+
+                item = self.level[j*self.w + i]
+                #TODO
+
+
 screen = pygame.display.set_mode((400, 300))
 skinfilename = os.path.join('borgao.png')
 
@@ -15,6 +49,7 @@ except pygame.error as msg:
 skin = skin.convert()
 
 screen.fill(skin.get_at((0, 0)))
+screen.blit(skin, (i*w, j*w), (0, 0, w, w))
 
 clock = pygame.time.Clock()
 pygame.key.set_repeat(200, 50)
